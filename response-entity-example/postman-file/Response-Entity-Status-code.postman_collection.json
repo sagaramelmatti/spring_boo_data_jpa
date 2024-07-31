@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "7ea24681-8529-45fe-9613-f767b95d4b92",
+		"name": "Response-Entity-Status-code",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "6182558",
+		"_collection_link": "https://www.postman.com/warped-station-307447/workspace/trainingworkspace/collection/6182558-7ea24681-8529-45fe-9613-f767b95d4b92?action=share&source=collection_link&creator=6182558"
+	},
+	"item": [
+		{
+			"name": "Update Employee",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/employees/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete employee with invalid id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8081/employees/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/employees/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Employee with invalid id 404",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/employees/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Update employee with invalid id 404",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Sagar\",\r\n    \"Role\" : \"Supervisor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/employees/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Update empoyee with valid id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Sagar\",\r\n    \"role\" : \"Supervisor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/employees/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Rahul\",\r\n    \"role\" : \"Admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/employees"
+			},
+			"response": []
+		}
+	]
+}
