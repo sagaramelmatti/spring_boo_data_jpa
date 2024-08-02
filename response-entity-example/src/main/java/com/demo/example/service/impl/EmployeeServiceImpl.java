@@ -8,7 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.example.common.exceptions.ResourceNotFoundException;
+import com.demo.example.common.exceptions.EmployeeNotFoundException;
+import com.demo.example.common.util.MessageConstants;
+import com.demo.example.common.util.Role;
 import com.demo.example.dto.EmployeeDTO;
 import com.demo.example.entity.Employee;
 import com.demo.example.repo.EmployeeRepository;
@@ -43,10 +45,10 @@ public class EmployeeServiceImpl implements  EmployeeService {
 
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new EmployeeNotFoundException(MessageConstants.EMPLOYEE_NOT_FOUND + id));
 
         employee.setName(employeeDTO.getName());
-        employee.setRole(employeeDTO.getRole());
+        employee.setRole(Role.MANAGER);
 
         Employee updatedEmployee = employeeRepository.save(employee);
         return modelMapper.map(updatedEmployee, EmployeeDTO.class);
@@ -54,7 +56,7 @@ public class EmployeeServiceImpl implements  EmployeeService {
 
     public void deleteEmployee(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new EmployeeNotFoundException(MessageConstants.EMPLOYEE_NOT_FOUND + id));
         employeeRepository.delete(employee);
     }
 }

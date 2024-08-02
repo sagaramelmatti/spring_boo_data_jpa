@@ -1,12 +1,14 @@
 package com.demo.example.common.exceptions;
 
-public class ResourceNotFoundException extends RuntimeException {
+public class EmployeeNotFoundException extends RuntimeException {
+	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ResourceNotFoundException(String message) {
+	public EmployeeNotFoundException(String message) {
 		super(message);
 	}
 }

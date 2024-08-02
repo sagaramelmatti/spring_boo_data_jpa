@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.example.common.exceptions.ResourceNotFoundException;
+import com.demo.example.common.exceptions.EmployeeNotFoundException;
+import com.demo.example.common.util.ApiResponse;
+import com.demo.example.common.util.MessageConstants;
 import com.demo.example.dto.EmployeeDTO;
 import com.demo.example.service.EmployeeService;
 
@@ -24,23 +26,26 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-
-    @PostMapping
-    public ResponseEntity<EmployeeDTO> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        EmployeeDTO savedEmployee = employeeService.saveEmployee(employeeDTO);
-        return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
-    }
-
+    
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> getAllEmployees() {
         List<EmployeeDTO> employees = employeeService.getAllEmployees();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<ApiResponse> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    	
+        EmployeeDTO savedEmployee =  employeeService.saveEmployee(employeeDTO);
+        ApiResponse apiResponse = new ApiResponse(MessageConstants.EMPLOYEE_CREATED,  "Employee Saved Succsefully now we show all list", savedEmployee, 200,null );
+		return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
         EmployeeDTO employee = employeeService.getEmployeeById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + id));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee not found for this id :: " + id));
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
