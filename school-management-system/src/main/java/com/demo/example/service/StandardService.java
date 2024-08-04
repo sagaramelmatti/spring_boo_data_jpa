@@ -3,6 +3,7 @@ package com.demo.example.service;
 import java.util.List;
 
 import com.demo.example.dto.StandardDTO;
+import com.demo.example.dto.TeacherDTO;
 import com.demo.example.entity.StandardDetail;
 
 public interface StandardService {
@@ -17,5 +18,6 @@ public interface StandardService {
 
 	public void deleteStandard(Integer id);
 
-	//public StandardDetail assignProjectToStandard(Integer standardId, ProjectDTO projectDTO);
+	public StandardDetail addClassTeacherToStandard(Integer id, TeacherDTO teacherDTO);
+
 }
