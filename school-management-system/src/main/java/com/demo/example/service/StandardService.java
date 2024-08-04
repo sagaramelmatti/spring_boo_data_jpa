@@ -9,11 +9,11 @@ public interface StandardService {
 
 	public List<StandardDTO> findAll();
 
-	public StandardDetail saveStandard(StandardDTO productDto);
+	public StandardDetail saveStandard(StandardDTO standardDto);
 
 	public StandardDTO getStandardById(Integer id);
 
-	public StandardDetail updateStandard(Integer id, StandardDetail standardDetail);
+	public StandardDTO updateStandard(Integer id, StandardDTO standardDto);
 
 	public void deleteStandard(Integer id);
 

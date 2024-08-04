@@ -40,8 +40,8 @@ public class SubjectController {
 	}
 
 	@PutMapping("/{id}")
-	public SubjectDetail updateSubject(@PathVariable Integer id, @RequestBody SubjectDetail subject) {
-		return subjectService.updateSubject(id, subject);
+	public SubjectDTO updateSubject(@PathVariable Integer id, @RequestBody SubjectDTO subjectDto) {
+		return subjectService.updateSubject(id, subjectDto);
 	}
 
 	@DeleteMapping("/{id}")

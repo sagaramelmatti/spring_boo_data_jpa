@@ -8,8 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.example.common.util.MessageConstants;
 import com.demo.example.dto.SubjectDTO;
 import com.demo.example.entity.SubjectDetail;
+import com.demo.example.exception.ResourceNotFoundException;
 import com.demo.example.repo.SubjectRepository;
 import com.demo.example.service.SubjectService;
 
@@ -17,43 +19,54 @@ import com.demo.example.service.SubjectService;
 public class SubjectServiceImpl implements SubjectService {
 
 	@Autowired
-	SubjectRepository projectRepository;
+	SubjectRepository subjectRepository;
 
 	ModelMapper modelMapper = new ModelMapper();
 
 	public List<SubjectDTO> findAll() {
 
-		List<SubjectDetail> projectList = projectRepository.findAll();
+		List<SubjectDetail> subjectList = subjectRepository.findAll();
 
-		List<SubjectDTO> projectDTOList = new ArrayList<SubjectDTO>();
-		for (SubjectDetail project : projectList) {
-			SubjectDTO projectDTO = modelMapper.map(project, SubjectDTO.class);
-			projectDTOList.add(projectDTO);
+		List<SubjectDTO> subjectDTOList = new ArrayList<SubjectDTO>();
+		for (SubjectDetail subject : subjectList) {
+			SubjectDTO subjectDTO = modelMapper.map(subject, SubjectDTO.class);
+			subjectDTOList.add(subjectDTO);
 		}
-		return projectDTOList;
+		return subjectDTOList;
 	}
 
-	public SubjectDetail saveSubject(SubjectDTO projectDTO) {
+	public SubjectDetail saveSubject(SubjectDTO subjectDTO) {
 
-		SubjectDetail project = modelMapper.map(projectDTO, SubjectDetail.class);
-		return projectRepository.save(project);
+		SubjectDetail subject = modelMapper.map(subjectDTO, SubjectDetail.class);
+		return subjectRepository.save(subject);
 	}
 
 	public SubjectDTO getSubjectById(Integer id) {
 
-		Optional<SubjectDetail> projectOptinal = projectRepository.findById(id);
-		SubjectDetail project = projectOptinal.get();
+		Optional<SubjectDetail> subjectOptinal = subjectRepository.findById(id);
+		SubjectDetail subject = subjectOptinal.get();
 
-		SubjectDTO projectDTO = modelMapper.map(project, SubjectDTO.class);
-		return projectDTO;
+		SubjectDTO subjectDTO = modelMapper.map(subject, SubjectDTO.class);
+		return subjectDTO;
 	}
 
-	public SubjectDetail updateSubject(Integer id, SubjectDetail project) {
-		project.setId(id);
-		return projectRepository.save(project);
+	public SubjectDTO updateSubject(Integer id, SubjectDTO subjectDto) {
+
+		SubjectDetail subjectDetail = subjectRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STANDARD_NOT_FOUND + id));
+
+		subjectDetail.setName(subjectDto.getName());
+
+		SubjectDetail updatedSubjectDetail = subjectRepository.save(subjectDetail);
+		return modelMapper.map(updatedSubjectDetail, SubjectDTO.class);
+
 	}
 
 	public void deleteSubject(Integer id) {
-		projectRepository.deleteById(id);
+
+		SubjectDetail subjectDetail = subjectRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException(MessageConstants.SUBJECT_NOT_FOUND + id));
+
+		subjectRepository.delete(subjectDetail);
 	}
 }

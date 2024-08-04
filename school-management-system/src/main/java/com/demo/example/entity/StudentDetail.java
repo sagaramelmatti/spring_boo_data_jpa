@@ -28,8 +28,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "students_details")
-public class StudentsDetail implements Serializable {
+@Table(name = "student_details")
+public class StudentDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -8,8 +8,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.example.common.util.MessageConstants;
 import com.demo.example.dto.StandardDTO;
 import com.demo.example.entity.StandardDetail;
+import com.demo.example.exception.ResourceNotFoundException;
 import com.demo.example.repo.StandardRepository;
 import com.demo.example.service.StandardService;
 
@@ -76,13 +78,24 @@ public class StandardServiceImpl implements StandardService {
 		return standardDto;
 	}
 
-	public StandardDetail updateStandard(Integer id, StandardDetail standard) {
-		standard.setId(id);
-		return standardRepository.save(standard);
+	public StandardDTO updateStandard(Integer id, StandardDTO standardDto) {
+		
+		StandardDetail standardDetail = standardRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STANDARD_NOT_FOUND + id));
+		
+		standardDetail.setName(standardDto.getName());
+		
+		StandardDetail updatedStandardDetail = standardRepository.save(standardDetail);
+        return modelMapper.map(updatedStandardDetail, StandardDTO.class);
+		
 	}
 
 	public void deleteStandard(Integer id) {
 		standardRepository.deleteById(id);
+		
+		StandardDetail standardDetail = standardRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STANDARD_NOT_FOUND + id));
+		standardRepository.delete(standardDetail);
 	}
 
 	/*

@@ -46,6 +46,6 @@ public class StandardDetail implements Serializable {
 
 	// bi-directional many-to-one association to StudentsDetail
 	@OneToMany(mappedBy = "standardDetail")
-	private List<StudentsDetail> studentsDetails;
+	private List<StudentDetail> studentDetails;
 
 }

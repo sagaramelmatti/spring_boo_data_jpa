@@ -9,11 +9,11 @@ public interface SubjectService {
 
 	public List<SubjectDTO> findAll();
 
-	public SubjectDetail saveSubject(SubjectDTO categoryDto);
+	public SubjectDetail saveSubject(SubjectDTO subjectDto);
 
 	public SubjectDTO getSubjectById(Integer id);
 
-	public SubjectDetail updateSubject(Integer id, SubjectDetail category);
+	public SubjectDTO updateSubject(Integer id, SubjectDTO subjectDto);
 
 	public void deleteSubject(Integer id);
 }

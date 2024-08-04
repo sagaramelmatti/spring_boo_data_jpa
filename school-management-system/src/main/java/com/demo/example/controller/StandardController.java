@@ -55,8 +55,8 @@ public class StandardController {
 	}
 
 	@PutMapping("/{id}")
-	public StandardDetail updateStandard(@PathVariable Integer id, @RequestBody StandardDetail standard) {
-		return standardService.updateStandard(id, standard);
+	public StandardDTO updateStandard(@PathVariable Integer id, @RequestBody StandardDTO standardDTO) {
+		return standardService.updateStandard(id, standardDTO);
 	}
 
 	@DeleteMapping("/{id}")
