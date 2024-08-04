@@ -10,9 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.demo.example.common.util.MessageConstants;
 import com.demo.example.dto.StandardDTO;
+import com.demo.example.dto.TeacherDTO;
 import com.demo.example.entity.StandardDetail;
+import com.demo.example.entity.TeacherDetail;
 import com.demo.example.exception.ResourceNotFoundException;
 import com.demo.example.repo.StandardRepository;
+import com.demo.example.repo.TeacherRepository;
 import com.demo.example.service.StandardService;
 
 @Service
@@ -20,6 +23,9 @@ public class StandardServiceImpl implements StandardService {
 
 	@Autowired
 	StandardRepository standardRepository;
+	
+	@Autowired
+	TeacherRepository teacherRepository;
 	
 	ModelMapper modelMapper = new ModelMapper();
 
@@ -91,30 +97,27 @@ public class StandardServiceImpl implements StandardService {
 	}
 
 	public void deleteStandard(Integer id) {
-		standardRepository.deleteById(id);
 		
 		StandardDetail standardDetail = standardRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STANDARD_NOT_FOUND + id));
 		standardRepository.delete(standardDetail);
 	}
 
-	/*
 	@Override
-	public StandardDetail assignStandardToStandard(Integer standardId, StandardDTO projectDTO) {
-
-		Optional<StandardDetail> standardOptional = standardRepository.findById(standardId);
-		StandardDetail standard = standardOptional.get();
+	public StandardDetail addClassTeacherToStandard(Integer id, TeacherDTO teacherDTO) {
 		
+		Optional<StandardDetail> standardDetailOptional = standardRepository.findById(id);
+		StandardDetail standard = standardDetailOptional.get();
 		
-		Optional<Standard> projectOptional = projectRepository.findById(projectDTO.getId());
-		Standard project = projectOptional.get();
+		Optional<TeacherDetail> teacherDetailOptional = teacherRepository.findById(teacherDTO.getId());
+		TeacherDetail teacherDetail = teacherDetailOptional.get();
 		
-		List<Standard> projects = standard.getStandards();
-		projects.add(project);
+		List<TeacherDetail> teacherDetails = standard.getTeacherDetails();
+		teacherDetails.add(teacherDetail);
 		
-		standard.setStandards(projects);
+		standard.setTeacherDetails(teacherDetails);
 		
 		return standardRepository.save(standard);
 	}
-	*/
+
 }

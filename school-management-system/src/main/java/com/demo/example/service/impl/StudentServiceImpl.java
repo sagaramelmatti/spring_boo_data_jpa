@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.demo.example.common.util.MessageConstants;
 import com.demo.example.dto.StandardDTO;
 import com.demo.example.dto.StudentDTO;
+import com.demo.example.entity.StandardDetail;
 import com.demo.example.entity.StudentDetail;
 import com.demo.example.exception.ResourceNotFoundException;
+import com.demo.example.repo.StandardRepository;
 import com.demo.example.repo.StudentRepository;
 import com.demo.example.service.StudentService;
 
@@ -21,6 +23,9 @@ public class StudentServiceImpl implements StudentService {
 
 	@Autowired
 	StudentRepository studentRepository;
+	
+	@Autowired
+	StandardRepository standardRepository;
 	
 	ModelMapper modelMapper = new ModelMapper();
 
@@ -44,6 +49,11 @@ public class StudentServiceImpl implements StudentService {
 	public StudentDetail saveStudent(StudentDTO studentDto) {
 
 		StudentDetail student = modelMapper.map(studentDto, StudentDetail.class);
+		
+		StandardDetail standardDetail = standardRepository.findById(studentDto.getStandardDTO().getId())
+				.orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STANDARD_NOT_FOUND + studentDto.getStandardDTO().getId()));
+		
+		student.setStandardDetail(standardDetail);
 		return studentRepository.save(student);
 	}
 
@@ -65,7 +75,10 @@ public class StudentServiceImpl implements StudentService {
 
 		studentDetail.setName(studentDto.getName());
 		studentDetail.setAge(studentDto.getAge());
-		//studentDetail.setStandardDetail(studentDto.getStandardDTO());
+		
+		StandardDetail standardDetail = studentDetail.getStandardDetail();
+		standardDetail.setId(studentDto.getStandardDTO().getId());
+		studentDetail.setStandardDetail(standardDetail);
 
 		StudentDetail updatedStudentDetail = studentRepository.save(studentDetail);
 		return modelMapper.map(updatedStudentDetail, StudentDTO.class);

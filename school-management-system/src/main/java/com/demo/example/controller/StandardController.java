@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.example.dto.StandardDTO;
+import com.demo.example.dto.TeacherDTO;
 import com.demo.example.entity.StandardDetail;
 import com.demo.example.service.StandardService;
 
@@ -64,10 +65,8 @@ public class StandardController {
 		standardService.deleteStandard(id);
 	}
 	
-/*
-	@PostMapping("/assignProject/{abc}")
-	public StandardDetail addProjectToStandard(@PathVariable(value = "abc") Integer abc, @RequestBody ProjectDTO projectDTO) {
-		return standardService.assignProjectToStandard(abc, projectDTO);
+	@PostMapping("/assignClassTeacher/{id}")
+	public StandardDetail addClassTeacherToStandard(@PathVariable(value = "id") Integer id, @RequestBody TeacherDTO teacherDTO) {
+		return standardService.addClassTeacherToStandard(id, teacherDTO);
 	}
-	*/
 }

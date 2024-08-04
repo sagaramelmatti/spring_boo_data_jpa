@@ -32,6 +32,7 @@ public class TeacherServiceImpl implements TeacherService {
 
 		for (TeacherDetail teacher : teacherList) {
 			TeacherDTO teacherDto = modelMapper.map(teacher, TeacherDTO.class);
+			
 			// set Standard details to teacher
 			List<StandardDTO> standardDTOList = new ArrayList<StandardDTO>();
 
