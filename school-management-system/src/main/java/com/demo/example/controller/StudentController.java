@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.example.dto.StudentDTO;
@@ -62,6 +63,13 @@ public class StudentController {
 	@DeleteMapping("/{id}")
 	public void deleteStudent(@PathVariable Integer id) {
 		studentService.deleteStudent(id);
+	}
+	
+	@GetMapping("/searchStudent")
+	public ResponseEntity<List<StudentDTO>> findStudentByStudentName(@RequestParam String name) {
+
+		List<StudentDTO> studentDTOList = studentService.findStudentByStudentName(name);
+		return ResponseEntity.status(HttpStatus.OK).body(studentDTOList);
 	}
 	
 /*

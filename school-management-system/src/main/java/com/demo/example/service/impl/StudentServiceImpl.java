@@ -36,10 +36,13 @@ public class StudentServiceImpl implements StudentService {
 
 		studentDtoList = new ArrayList<StudentDTO>();
 		for (StudentDetail student : studentList) {
-			StudentDTO studentDto = modelMapper.map(student, StudentDTO.class);
+			
+			StudentDTO studentDto = modelMapper.map(student, StudentDTO.class); // Student DTO
 			
 			// set Standard details to student
-			StandardDTO standardDTO = modelMapper.map(student.getStandardDetail(), StandardDTO.class);
+			StandardDTO standardDTO = modelMapper.map(student.getStandardDetail(), StandardDTO.class); // StandardDTO
+			
+			
 			studentDto.setStandardDTO(standardDTO);
 			studentDtoList.add(studentDto);
 		}
@@ -77,6 +80,7 @@ public class StudentServiceImpl implements StudentService {
 		studentDetail.setAge(studentDto.getAge());
 		
 		StandardDetail standardDetail = studentDetail.getStandardDetail();
+		
 		standardDetail.setId(studentDto.getStandardDTO().getId());
 		studentDetail.setStandardDetail(standardDetail);
 
@@ -91,6 +95,28 @@ public class StudentServiceImpl implements StudentService {
 				.orElseThrow(() -> new ResourceNotFoundException(MessageConstants.STUDENT_NOT_FOUND + id));
 
 		studentRepository.delete(studentDetail);
+	}
+
+	@Override
+	public List<StudentDTO> findStudentByStudentName(String name) {
+		
+		List<StudentDTO> studentDtoList = null;
+		name = name.trim();
+		List<StudentDetail> studentList = studentRepository.findStudentWithName(name);
+
+		studentDtoList = new ArrayList<StudentDTO>();
+		for (StudentDetail student : studentList) {
+			
+			StudentDTO studentDto = modelMapper.map(student, StudentDTO.class); // Student DTO
+			
+			// set Standard details to student
+			StandardDTO standardDTO = modelMapper.map(student.getStandardDetail(), StandardDTO.class); // StandardDTO
+			
+			
+			studentDto.setStandardDTO(standardDTO);
+			studentDtoList.add(studentDto);
+		}
+		return studentDtoList;
 	}
 
 	/*

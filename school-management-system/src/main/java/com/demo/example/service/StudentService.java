@@ -17,5 +17,7 @@ public interface StudentService {
 
 	public void deleteStudent(Integer id);
 
+	public List<StudentDTO> findStudentByStudentName(String name);
+
 	//public StudentDetail assignProjectToStudent(Integer standardId, ProjectDTO projectDTO);
 }
