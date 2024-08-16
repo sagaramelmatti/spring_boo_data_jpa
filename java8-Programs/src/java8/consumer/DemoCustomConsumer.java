@@ -1,4 +1,4 @@
-package java8.predicates;
+package java8.consumer;
 
 import java.util.function.Consumer;
 
