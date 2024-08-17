@@ -6,13 +6,7 @@ public class FunctionInterfaceAnonymousClassImplementationExample {
 
 	public static void main(String[] args) {
 
-		Function<String, Integer> function = new Function<String, Integer>() {
-
-			@Override
-			public Integer apply(String t) {
-				return t.length();
-			}
-		};
+		Function<String, Integer> function = ( t) ->  t.length();
 
 		int stringLength = function.apply("Hello World");
 		System.out.println("stringLength= "+ stringLength);
