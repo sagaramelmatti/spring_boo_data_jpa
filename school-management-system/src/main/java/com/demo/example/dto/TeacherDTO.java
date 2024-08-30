@@ -23,5 +23,5 @@ public class TeacherDTO {
 
 	private String education;
 	
-	private List<StandardDTO> standardDtos;
+	//private List<StandardDTO> standardDtos;
 }

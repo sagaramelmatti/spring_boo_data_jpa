@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -45,21 +46,14 @@ public class StandardDetail implements Serializable {
 
 	@Column(nullable = false, length = 50)
 	private String name;
-
-	// bi-directional many-to-many association to SubjectDetail
-	@JsonIgnore
-	@ManyToMany(mappedBy = "standardDetails")
-	private List<SubjectDetail> subjectDetails;
-
-	// bi-directional many-to-one association to StudentsDetail
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "standardDetail")
 	private List<StudentDetail> studentDetails;
-
 	@JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
-    @JoinTable(name = "standard_teacher_mapping", joinColumns = @JoinColumn(name = "standard_id"), 
-        	inverseJoinColumns = @JoinColumn(name = "teacher_id"))
-    private List<TeacherDetail> teacherDetails;
-
+    
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "standard_teacher_mapping", joinColumns = @JoinColumn(name = "standard_id"), 
+	inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+	private List<TeacherDetail> teacherDetails;
 }

@@ -36,12 +36,14 @@ public class TeacherServiceImpl implements TeacherService {
 			// set Standard details to teacher
 			List<StandardDTO> standardDTOList = new ArrayList<StandardDTO>();
 
+			/*
 			for (StandardDetail standardDetail : teacher.getStandardDetails()) {
 				StandardDTO standardDTO = modelMapper.map(standardDetail, StandardDTO.class);
 				standardDTOList.add(standardDTO);
 			}
+			*/
 
-			teacherDto.setStandardDtos(standardDTOList);
+			//teacherDto.setStandardDtos(standardDTOList);
 			teacherDtoList.add(teacherDto);
 		}
 

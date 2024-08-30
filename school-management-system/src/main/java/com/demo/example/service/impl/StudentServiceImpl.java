@@ -64,10 +64,12 @@ public class StudentServiceImpl implements StudentService {
 		StudentDTO studentDto = null;
 		Optional<StudentDetail> studentOptinal = studentRepository.findById(id);
 		
-	    if (!studentOptinal.isPresent()) {
+	    if (studentOptinal.isPresent()) {
 	    	StudentDetail student = studentOptinal.get();
 			studentDto = modelMapper.map(student, StudentDTO.class);
 	    }
+		
+		
 		return studentDto;
 	}
 
