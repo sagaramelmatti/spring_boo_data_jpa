@@ -20,7 +20,7 @@ import com.demo.example.entity.StudentDetail;
 import com.demo.example.service.StudentService;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
 public class StudentController {
 
 	@Autowired

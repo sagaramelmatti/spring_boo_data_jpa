@@ -19,7 +19,7 @@ import com.demo.example.entity.StandardDetail;
 import com.demo.example.service.StandardService;
 
 @RestController
-@RequestMapping("/standards")
+@RequestMapping("/api/standards")
 public class StandardController {
 
 	@Autowired

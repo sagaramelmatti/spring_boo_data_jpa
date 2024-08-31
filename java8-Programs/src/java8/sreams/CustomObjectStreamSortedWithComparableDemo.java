@@ -23,7 +23,7 @@ public class CustomObjectStreamSortedWithComparableDemo {
 		System.out.println(list);
 		
 		//With Java 8
-		list.stream().sorted((i1, i2) -> i2.compareTo(i1)).forEach(employee -> System.out.print(employee +", "));
+		//list.stream().sorted((i1, i2) -> i2.compareTo(i1)).forEach(employee -> System.out.print(employee +", "));
 		
 	}
 }

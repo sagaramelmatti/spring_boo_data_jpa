@@ -1,10 +1,12 @@
 package java8.sreams;
 
-public class Employee implements Comparable<Employee> {
+public class Employee {
 	
-	int empId;
+	private int empId;
 	
-	String empName;
+	private String empName;
+	
+	private Department department;
 
 	public Employee() {
 		super();
@@ -14,6 +16,13 @@ public class Employee implements Comparable<Employee> {
 		super();
 		this.empId = empId;
 		this.empName = empName;
+	}
+	
+	public Employee(int empId, String empName, Department department) {
+		super();
+		this.empId = empId;
+		this.empName = empName;
+		this.department = department;
 	}
 
 	public int getEmpId() {
@@ -32,15 +41,16 @@ public class Employee implements Comparable<Employee> {
 		this.empName = empName;
 	}
 
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
 	@Override
 	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + "]";
+		return "Employee [empId=" + empId + ", empName=" + empName + ", department=" + department + "]";
 	}
-
-	@Override
-	public int compareTo(Employee o) {
-
-		return this.getEmpName().compareTo(o.getEmpName());
-	}
-
 }
