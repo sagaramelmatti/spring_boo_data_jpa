@@ -71,10 +71,8 @@ public class StandardServiceImpl implements StandardService {
 		StandardDTO standardDto = null;
 		Optional<StandardDetail> standardOptinal = standardRepository.findById(id);
 		
-	    if (!standardOptinal.isPresent()) {
-	    	StandardDetail standard = standardOptinal.get();
-			standardDto = modelMapper.map(standard, StandardDTO.class);
-	    }
+		StandardDetail standard = standardOptinal.get();
+		standardDto = modelMapper.map(standard, StandardDTO.class);
 		return standardDto;
 	}
 

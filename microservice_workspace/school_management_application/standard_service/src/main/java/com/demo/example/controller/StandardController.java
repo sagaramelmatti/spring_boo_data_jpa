@@ -40,17 +40,12 @@ public class StandardController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Object> getStandardById(@PathVariable Integer id) {
+	public StandardDTO getStandardById(@PathVariable Integer id) {
 		
 		StandardDTO standardDTO = standardService.getStandardById(id);
 
-		// If the resource is not found, return a 404 (not found) status code
-		if (standardDTO == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-
 		// Return the resource with a 200 (OK) status code
-		return ResponseEntity.status(HttpStatus.OK).body(standardDTO);
+		return standardDTO;
 
 	}
 

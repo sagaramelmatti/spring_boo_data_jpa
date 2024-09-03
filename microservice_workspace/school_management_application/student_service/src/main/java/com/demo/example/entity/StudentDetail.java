@@ -39,5 +39,11 @@ public class StudentDetail implements Serializable {
 
 	@Column(nullable = false, length = 100)
 	private String name;
+	
+	@Column(nullable = false, length = 100)
+	private int standardId;
+	
+	@Column(nullable = false, length = 100)
+	private int addressId;
 
 }

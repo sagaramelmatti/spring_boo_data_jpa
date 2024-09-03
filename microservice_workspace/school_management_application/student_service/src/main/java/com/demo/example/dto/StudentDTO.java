@@ -15,8 +15,14 @@ public class StudentDTO {
 
 	private Integer id;
 
-	private Integer age;
+	private String age;
 
 	private String name;
+	
+	private String standardId;
+	
+	private String standardName;
+	
+	private AddressDTO addressDTO;
 
 }
