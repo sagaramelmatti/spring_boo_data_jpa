@@ -12,7 +12,9 @@ public class HelloWorldController {
 	@GetMapping("/sayHello")
 	public String getHelloWorld() {
 
-		return "Hello World";
+		//throw new RuntimeException("Runtime exception");
+		return "Hello world";
+		
 	}
 
 }
