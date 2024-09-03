@@ -1,34 +1,41 @@
 server:
   port: 9191
-  
+
+
 spring:
   application:
     name: api-gateway
   cloud:
     gateway:
-      routes:
-        - id: hello-world-service-route
-          uri: lb://hello-world-service
-          predicates:
-            - Path=/api/hello/**
-            
-        - id: standard-service-route
-          uri: lb://standard-service
-          predicates:
-            - Path=/api/standards/**
-            
-        - id: student-service-route
-          uri: lb://student-service
-          predicates:
-            - Path=/api/students/**
-            
+      mvc:
+        routes:
+          - id: hello-world-service-route
+            uri: lb://hello-world-service
+            predicates:
+              - Path=/api/hello/**
+              
+          - id: standard-service-route
+            uri: lb://standard-service
+            predicates:
+              - Path=/api/standards/**
+
+          - id: student-service-route
+            uri: lb://student-service
+            predicates:
+              - Path=/api/students/**
+
+          - id: address-service-route
+            uri: lb://address-service
+            predicates:
+              - Path=/api/address/**
+
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-      
+
 management:
   endpoints:
     web:
@@ -36,8 +43,7 @@ management:
         include: '*'
   health:
     circuitbreakers:
-      enabled: 'true'
+      enabled: true
   endpoint:
     health:
       show-details: always
-
