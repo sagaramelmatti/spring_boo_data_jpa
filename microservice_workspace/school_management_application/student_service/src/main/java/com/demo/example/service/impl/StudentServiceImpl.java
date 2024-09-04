@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.hc.core5.http.HttpStatus;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,12 +57,20 @@ public class StudentServiceImpl implements StudentService {
 		addressDTO.setCity(studentDto.getAddressDTO().getCity());
 		addressDTO.setPinCode(studentDto.getAddressDTO().getPinCode());
 		
+		ResponseEntity<?> responseEntity = restTemplate
+				.postForEntity("http://localhost:9191/api/address/", addressDTO, AddressDTO.class);
+
 		StudentDetail student = modelMapper.map(studentDto, StudentDetail.class);
 		
-		ResponseEntity<?> responseEntity = restTemplate
-				.postForEntity("http://localhost:9191/api/address/", addressDTO, ResponseEntity.class);
+		// Optionally, you can use the response if needed
+	    if(responseEntity.getStatusCode().value()== (HttpStatus.SC_CREATED)) {
+	    	addressDTO = (AddressDTO) responseEntity.getBody();
+	    	student.setAddressId(addressDTO.getId());
+	    }
 
-		return studentRepository.save(student);
+	    // Save the student entity in the student-service repository
+	    return studentRepository.save(student);
+		
 	}
 
 	public StudentDTO getStudentById(Integer id) {
