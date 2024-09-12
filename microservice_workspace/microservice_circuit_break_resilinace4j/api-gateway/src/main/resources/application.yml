@@ -1,0 +1,101 @@
+server:
+  port: 9191
+
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+        routes:
+          - id: hello-world-service-route
+            uri: lb://hello-world-service
+            predicates:
+              - Path=/api/hello/**
+            filters:
+             - name: CircuitBreaker
+               args:
+                 name: hello
+                 fallbackUri: forward:/fallbacks/hello	
+              
+          - id: standard-service-route
+            uri: lb://standard-service
+            predicates:
+              - Path=/api/standards/**
+            filters:
+              - name: CircuitBreaker
+                args:
+                    name: standard
+                    fallbackUri: forward:/fallbacks/standards					 
+
+          - id: student-service-route
+            uri: lb://student-service
+            predicates:
+              - Path=/api/students/**
+            filters:
+             - name: CircuitBreaker
+               args:
+                 name: student
+                 fallbackUri: forward:/fallbacks/students
+
+          - id: address-service-route
+            uri: lb://address-service
+            predicates:
+              - Path=/api/address/**
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints.web.exposure.include:
+    - '*'
+  endpoint.health.show-details: always
+  health.circuitbreakers.enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 2
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+    instances:
+      hello:
+        registerHealthIndicator: true
+        event-consumer-buffer-size: 10
+        slidingWindowSize: 5
+        slidingWindowType: COUNT_BASED
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+      
+      standard:
+        registerHealthIndicator: true
+        event-consumer-buffer-size: 10
+        slidingWindowSize: 5
+        slidingWindowType: COUNT_BASED
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+      student:
+         registerHealthIndicator: true
+         event-consumer-buffer-size: 10
+         slidingWindowSize: 5
+         slidingWindowType: COUNT_BASED
+         failureRateThreshold: 50
+         waitDurationInOpenState: 5s
+         permittedNumberOfCallsInHalfOpenState: 3
+         automaticTransitionFromOpenToHalfOpenEnabled: true
+      
