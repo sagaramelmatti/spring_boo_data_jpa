@@ -51,10 +51,16 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 management:
-  endpoints.web.exposure.include:
-    - '*'
-  endpoint.health.show-details: always
-  health.circuitbreakers.enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    circuitbreakers:
+      enabled: 'true'
+  endpoint:
+    health:
+      show-details: always
 
 resilience4j:
   circuitbreaker:

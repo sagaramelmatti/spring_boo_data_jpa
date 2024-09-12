@@ -11,7 +11,7 @@
 	<groupId>com.demo</groupId>
 	<artifactId>standard-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>standard_service</name>
+	<name>standard-service</name>
 	<description>Demo project for Standard Service</description>
 	<url/>
 	<licenses>
