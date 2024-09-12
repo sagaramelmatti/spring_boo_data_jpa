@@ -19,6 +19,12 @@ public class GatewayFallback {
     public ResponseEntity<String> standardsFallback(){
         return new ResponseEntity<>("Something went wrong for standards service this operation. Please try later...", HttpStatus.SERVICE_UNAVAILABLE);
     }
+	
+	@GetMapping("/students")
+    public ResponseEntity<String> studentsFallback(){
+        return new ResponseEntity<>("Something went wrong for Students service this operation. Please try later...", HttpStatus.SERVICE_UNAVAILABLE);
+    }
+	
     @GetMapping("/customer")
     public ResponseEntity<String> customerFallback(){
         return new ResponseEntity<>("Something went wrong for this operation. Please try later...", HttpStatus.SERVICE_UNAVAILABLE);
