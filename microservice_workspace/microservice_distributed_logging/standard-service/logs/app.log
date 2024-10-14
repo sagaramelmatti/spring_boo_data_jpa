@@ -1,0 +1,6 @@
+2024-10-14 19:20:17.305  INFO [standard-service,,] 16396 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-10-14 19:21:57.599  INFO [standard-service,7d545291686f9655,7d545291686f9655] 16396 --- [http-nio-9001-exec-4] c.d.e.controller.StandardController      : Inside getStandards of Stand rd Service microservice#1
+2024-10-14 19:21:57.599  INFO [standard-service,7d545291686f9655,7d545291686f9655] 16396 --- [http-nio-9001-exec-4] c.d.e.service.impl.StandardServiceImpl   : Inside findAll StandardServiceImpl
+2024-10-14 19:21:57.600  INFO [standard-service,7d545291686f9655,7d545291686f9655] 16396 --- [http-nio-9001-exec-4] c.d.e.service.impl.StandardServiceImpl   : findAll standardRepository calling Start
+2024-10-14 19:21:57.793  INFO [standard-service,7d545291686f9655,7d545291686f9655] 16396 --- [http-nio-9001-exec-4] c.d.e.service.impl.StandardServiceImpl   : findAll standardRepository calling End
+2024-10-14 19:21:57.793  INFO [standard-service,7d545291686f9655,7d545291686f9655] 16396 --- [http-nio-9001-exec-4] c.d.e.service.impl.StandardServiceImpl   : StandardDTO object of Standard service impl StandardDTO(id=1, name=Class-5)

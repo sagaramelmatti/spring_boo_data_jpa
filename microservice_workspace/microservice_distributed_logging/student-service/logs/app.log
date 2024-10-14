@@ -1,0 +1,19 @@
+2024-10-14 19:16:46.955  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.controller.StudentController       : Inside getStudents of Student Service1
+2024-10-14 19:16:46.955  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : Inside findAll ofStudentServiceImpl
+2024-10-14 19:16:46.956  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : findAll studentRepository calling Start
+2024-10-14 19:16:47.114  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : findAll studentRepository calling End
+2024-10-14 19:16:47.189  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : StudentDTO object StudentDTO(id=2, age=8, name=Sanvi, standardId=1, standardName=null, addressDTO=null)
+2024-10-14 19:16:47.207  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : Calling  Standrd Service using RestTemplate
+2024-10-14 19:16:48.007  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : StandardDTO object StandardDTO(id=1, name=Class-5)
+2024-10-14 19:16:48.009  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.service.impl.StudentServiceImpl    : End of  Rest template Call
+2024-10-14 19:16:48.009  INFO [student-service,a5e3f3756a6469e0,a5e3f3756a6469e0] 9648 --- [http-nio-9002-exec-1] c.d.e.controller.StudentController       : End of getStudents of Student Service1
+2024-10-14 19:21:04.130  INFO [student-service,,] 9648 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-10-14 19:21:07.405  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.controller.StudentController       : Inside getStudents of Student Service1
+2024-10-14 19:21:07.405  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : Inside findAll ofStudentServiceImpl
+2024-10-14 19:21:07.405  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : findAll studentRepository calling Start
+2024-10-14 19:21:07.414  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : findAll studentRepository calling End
+2024-10-14 19:21:07.415  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : StudentDTO object StudentDTO(id=2, age=8, name=Sanvi, standardId=1, standardName=null, addressDTO=null)
+2024-10-14 19:21:07.415  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : Calling  Standrd Service using RestTemplate
+2024-10-14 19:21:07.448  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : StandardDTO object StandardDTO(id=1, name=Class-5)
+2024-10-14 19:21:07.449  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.service.impl.StudentServiceImpl    : End of  Rest template Call
+2024-10-14 19:21:07.449  INFO [student-service,4ad667ae678ee9c1,4ad667ae678ee9c1] 9648 --- [http-nio-9002-exec-3] c.d.e.controller.StudentController       : End of getStudents of Student Service1
